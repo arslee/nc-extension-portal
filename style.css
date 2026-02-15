@@ -1,0 +1,423 @@
+/* ============================================================
+   NC State Extension — App Portal Styles
+   ============================================================ */
+
+:root {
+  --nc-red: #CC0000;
+  --nc-red-dark: #990000;
+  --nc-gray: #75787B;
+  --nc-gray-light: #F5F5F5;
+  --nc-white: #FFFFFF;
+  --nc-text: #333333;
+  --radius: 8px;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  color: var(--nc-text);
+  background: var(--nc-gray-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Utility ---------- */
+.hidden {
+  display: none !important;
+}
+
+/* ============================================================
+   TOP NAVIGATION
+   ============================================================ */
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--nc-red);
+  color: var(--nc-white);
+  padding: 0 1.25rem;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-brand-bar {
+  width: 4px;
+  height: 28px;
+  background: var(--nc-white);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.nav-title {
+  font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.nav-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-left: 0.25rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Nav sign-in button (compact, white on red) */
+.btn-nav-signin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--nc-red);
+  background: var(--nc-white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-nav-signin:hover {
+  background: #f0f0f0;
+}
+
+.btn-nav-signin .google-icon {
+  flex-shrink: 0;
+}
+
+.btn-signout {
+  padding: 0.35rem 0.9rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--nc-red);
+  background: var(--nc-white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-signout:hover {
+  background: #f0f0f0;
+}
+
+.btn-export {
+  padding: 0.35rem 0.9rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--nc-white);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-export:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.btn-export:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* ============================================================
+   CARDS GRID
+   ============================================================ */
+
+.cards-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.5rem 1.5rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.app-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--nc-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--nc-text);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+}
+
+.app-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  border-color: var(--nc-red);
+}
+
+/* Thumbnail area */
+.card-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 62.5%; /* 16:10 aspect ratio */
+  overflow: hidden;
+  background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+}
+
+.card-thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.card-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fafafa 0%, #e8e8e8 100%);
+}
+
+.placeholder-icon {
+  font-size: 3.5rem;
+  opacity: 0.5;
+}
+
+/* Card text */
+.card-body {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.card-body h3 {
+  font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: var(--nc-text);
+}
+
+.card-body p {
+  font-size: 0.82rem;
+  color: var(--nc-gray);
+  line-height: 1.4;
+}
+
+/* Footer */
+.portal-footer {
+  margin-top: auto;
+  padding: 1.5rem 0 1rem;
+  font-size: 0.75rem;
+  color: var(--nc-gray);
+  text-align: center;
+}
+
+/* ============================================================
+   SIGN-IN MODAL
+   ============================================================ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-card {
+  background: var(--nc-white);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  width: 100%;
+  max-width: 420px;
+  margin: 1rem;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  color: var(--nc-white);
+  font-size: 1.5rem;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.brand-header {
+  background: var(--nc-red);
+  color: var(--nc-white);
+  padding: 2rem 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.brand-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--nc-red-dark);
+}
+
+.brand-header h1 {
+  font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brand-header .subtitle {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-top: 0.25rem;
+}
+
+.modal-body {
+  padding: 2rem;
+  text-align: center;
+}
+
+.modal-body h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--nc-text);
+}
+
+.modal-body p {
+  font-size: 0.9rem;
+  color: var(--nc-gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* Google Sign-In button (modal) */
+.btn-google {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--nc-text);
+  background: var(--nc-white);
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+.btn-google:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  background: #f7f7f7;
+}
+
+.btn-google:active {
+  background: #eee;
+}
+
+.google-icon {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-subtitle {
+    display: none;
+  }
+
+  .user-info span {
+    display: none;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .cards-container {
+    padding: 1.5rem 1rem 1rem;
+  }
+}

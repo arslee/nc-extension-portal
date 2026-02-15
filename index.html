@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NC State Extension — Data Dashboards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top navigation bar -->
+  <nav class="top-nav">
+    <div class="nav-brand">
+      <div class="nav-brand-bar"></div>
+      <span class="nav-title">NC State Extension</span>
+      <span class="nav-subtitle">Data Dashboards</span>
+    </div>
+    <div class="nav-right">
+      <!-- Signed-out state -->
+      <div id="signed-out-controls">
+        <button id="btn-google-signin" class="btn-nav-signin">
+          <svg viewBox="0 0 24 24" width="16" height="16" class="google-icon">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Sign in
+        </button>
+      </div>
+      <!-- Signed-in state -->
+      <div id="signed-in-controls" class="hidden">
+        <div class="user-info">
+          <img id="user-avatar" class="avatar" src="" alt="User avatar">
+          <span id="user-name"></span>
+        </div>
+        <button id="btn-export-csv" class="btn-export hidden">Export CSV</button>
+        <button id="btn-signout" class="btn-signout">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- App cards grid (always visible) -->
+  <div class="cards-container">
+    <div class="cards-grid">
+
+      <a class="app-card" href="https://ncsuareextension.shinyapps.io/basis/" target="_blank" data-app="basis">
+        <div class="card-thumbnail">
+          <img src="images/basis.png" alt="NC Grain Basis Explorer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="card-placeholder" style="display:none;">
+            <span class="placeholder-icon">&#x1F33E;</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>NC Grain Basis Explorer</h3>
+          <p>Grain basis by location, commodity, and delivery type</p>
+        </div>
+      </a>
+
+      <a class="app-card" href="https://ncsuareextension.shinyapps.io/NC_crop/" target="_blank" data-app="nc_crop">
+        <div class="card-thumbnail">
+          <img src="images/nc_crop.png" alt="NC Major Field Crops" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="card-placeholder" style="display:none;">
+            <span class="placeholder-icon">&#127805;</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>NC Major Field Crops</h3>
+          <p>State overview, county maps, trends, and rankings</p>
+        </div>
+      </a>
+
+      <a class="app-card" href="https://ncsuareextension.shinyapps.io/NC_weather/" target="_blank" data-app="nc_weather">
+        <div class="card-thumbnail">
+          <img src="images/nc_weather.png" alt="NC County Weather" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="card-placeholder" style="display:none;">
+            <span class="placeholder-icon">&#9748;</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>NC County Weather</h3>
+          <p>County-level weather trends, maps, and seasonal forecasts</p>
+        </div>
+      </a>
+
+    </div>
+
+    <footer class="portal-footer">
+      NC State Extension &middot; Department of Agricultural &amp; Resource Economics
+    </footer>
+  </div>
+
+  <!-- Sign-in modal overlay -->
+  <div id="signin-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <div class="brand-header">
+        <div class="brand-bar"></div>
+        <h1>NC State Extension</h1>
+        <p class="subtitle">Department of Agricultural &amp; Resource Economics</p>
+      </div>
+      <div class="modal-body">
+        <h2>Sign in to continue</h2>
+        <p>Please sign in with your Google account to access this dashboard.</p>
+        <button id="btn-modal-signin" class="btn-google">
+          <svg viewBox="0 0 24 24" width="20" height="20" class="google-icon">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Sign in with Google
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK (compat builds) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
